@@ -25,7 +25,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var list<string> The user roles
      */
     #[ORM\Column]
-    private array $roles = [];
+    private array $roles = []; // this was created by php bin/console make:User hence json was not set as the option
 
     /**
      * @var string The hashed password
