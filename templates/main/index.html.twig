@@ -11,7 +11,7 @@
     {% endblock %}
 
 
-    {% block featured %}
+        {% block featured %}
             <!-- Featured Listings Start -->
             <section class="featured-lis" >
                 <div class="container">
@@ -24,10 +24,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img1.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>
+                                        <a href="#" class="item-name">Lorem ipsum dolor sit</a>
                                         <span class="price">$150</span>
                                     </div>
                                 </div>
@@ -36,10 +36,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img2.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Sed diam nonummy</a>
+                                        <a href="#" class="item-name">Sed diam nonummy</a>
                                         <span class="price">$67</span>
                                     </div>
                                 </div>
@@ -48,10 +48,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img3.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Feugiat nulla facilisis</a>
+                                        <a href="#" class="item-name">Feugiat nulla facilisis</a>
                                         <span class="price">$300</span>
                                     </div>
                                 </div>
@@ -60,10 +60,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img4.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>
+                                        <a href="#" class="item-name">Lorem ipsum dolor sit</a>
                                         <span class="price">$149</span>
                                     </div>
                                 </div>
@@ -72,10 +72,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img5.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Sed diam nonummy</a>
+                                        <a href="#" class="item-name">Sed diam nonummy</a>
                                         <span class="price">$90</span>
                                     </div>
                                 </div>
@@ -84,10 +84,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img6.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Praesent luptatum zzril</a>
+                                        <a href="#" class="item-name">Praesent luptatum zzril</a>
                                         <span class="price">$169</span>
                                     </div>
                                 </div>
@@ -96,10 +96,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img7.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Lorem ipsum dolor sit</a>
+                                        <a href="#" class="item-name">Lorem ipsum dolor sit</a>
                                         <span class="price">$79</span>
                                     </div>
                                 </div>
@@ -108,10 +108,10 @@
                                         <div class="carousel-thumb">
                                             <img src="{{ asset('img/product/img8.jpg') }}" alt="">
                                             <div class="overlay">
-                                                <a href="ads-details.html"><i class="fa fa-link"></i></a>
+                                                <a href="#"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="ads-details.html" class="item-name">Sed diam nonummy</a>
+                                        <a href="#" class="item-name">Sed diam nonummy</a>
                                         <span class="price">$149</span>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
     {% endblock %}{# end services #}
 
 
-
+        {% block counter %}
         <!-- Counter Section Start -->
         <section id="counter">
             <div class="container">
@@ -333,6 +333,9 @@
             </div>
         </section>
         <!-- Counter Section End -->
+    {% endblock %}{# end counter #}
+
+
     {% block footer %} {{ parent() }} {% endblock %}
     {% block scripts %}{{ parent() }}{% endblock %}
 {% endblock %}{# end body #}
