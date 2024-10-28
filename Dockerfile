@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y git
 
 # Created .bashrc to set up an alias for php bin/yadayada (I'm sick of typing that :-D)
 RUN echo "alias lee='php bin/console'" >> /root/.bashrc
+RUN echo "alias cr='composer require'" >> /root/.bashrc
 
 # Configurer Xdebug
 RUN echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
