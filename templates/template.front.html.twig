@@ -110,7 +110,7 @@
             <div class="container">
                 <div class="main-text">
                     <h1 class="intro-title">Welcome To <span style="color: #3498DB">ClassiX</span></h1>
-                    <p class="sub-title">Buy and sell everything from used cars to mobile phones and computers, or search for property, jobs and more</p>
+                    <p class="sub-title">Everything you need to know to become a Web Developer in one handy place</p>
                     {% block search %}
                         <!-- Start Search box -->
                         <div class="row search-bar">
@@ -120,7 +120,10 @@
                                         <div class="input-group-addon search-category-container">
                                             <label class="styled-select">
                                                 <select class="dropdown-product selectpicker" name="product-cat" >
-                                                    <option value="0">All Categories</option>
+
+                                                    {# REPLACE THESE WITH A LOOP #}
+
+                                                    <option value="0">All Authors</option>
                                                     <option class="subitem" value="community"> Community</option>
                                                     <option value="items-for-sale"> Items For Sale</option>
                                                     <option value="jobs"> Jobs</option>
@@ -129,6 +132,8 @@
                                                     <option value="real_estate"> Real Estate</option>
                                                     <option value="services"> Services</option>
                                                     <option value="vehicles"> Vehicles</option>
+
+
                                                 </select>
                                             </label>
                                         </div>
@@ -137,13 +142,18 @@
                                         <div class="input-group-addon search-category-container">
                                             <label class="styled-select location-select">
                                                 <select class="dropdown-product selectpicker" name="product-cat" >
-                                                    <option value="0">All Locations</option>
+
+                                                    {# REPLACE THESE TOO #}
+
+                                                    <option value="0">All Categories</option>
                                                     <option value="New York">New York</option>
                                                     <option value="California">California</option>
                                                     <option value="Washington">Washington</option>
                                                     <option value="churches">Birmingham</option>
                                                     <option value="Birmingham">Chicago</option>
                                                     <option value="Phoenix">Phoenix</option>
+
+
                                                 </select>
                                             </label>
                                         </div>
@@ -151,12 +161,45 @@
 
                                     </div>
                                     <div class="col-md-3 col-sm-6 search-col">
-                                        <input class="form-control keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
-                                        <i class="fa fa-search"></i>
+                                        <div class="input-group-addon search-category-container">
+                                            <label class="styled-select location-select">
+                                                <select class="dropdown-product selectpicker" name="product-cat" >
+
+                                                    {# REPLACE THESE TOO #}
+
+                                                    <option value="0">All Tags</option>
+                                                    <option value="New York">New York</option>
+                                                    <option value="California">California</option>
+                                                    <option value="Washington">Washington</option>
+                                                    <option value="churches">Birmingham</option>
+                                                    <option value="Birmingham">Chicago</option>
+                                                    <option value="Phoenix">Phoenix</option>
+
+
+                                                </select>
+                                            </label>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3 col-sm-6 search-col">
-                                        <button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
-                                    </div>
+                                        <div class="col-md-3 col-sm-6 search-col">
+                                            <div class="input-group-addon search-category-container">
+                                                <label class="styled-select location-select">
+                                                    <select class="dropdown-product selectpicker" name="product-cat" >
+
+                                                        {# REPLACE THESE TOO #}
+
+                                                        <option value="0">All Articles</option>
+                                                        <option value="New York">New York</option>
+                                                        <option value="California">California</option>
+                                                        <option value="Washington">Washington</option>
+                                                        <option value="churches">Birmingham</option>
+                                                        <option value="Birmingham">Chicago</option>
+                                                        <option value="Phoenix">Phoenix</option>
+
+
+                                                    </select>
+                                                </label>
+                                            </div>
+                                        </div>
                                 </form>
                             </div>
                         </div>
@@ -279,7 +322,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="site-info pull-left">
-                            <p>All copyrights reserved @ 2016 - Designed by <a rel="nofollow" href="http://graygrids.com">GrayGrids</a></p>
+                            <p>{{ "now" | date('Y') }} <a rel="nofollow" href="https://leerlandais.com">Leerlandais</a></p>
                         </div>
                         <div class="bottom-social-icons social-icon pull-right">
                             <a class="facebook" target="_blank" href="https://web.facebook.com/GrayGrids"><i class="fa fa-facebook"></i></a>
