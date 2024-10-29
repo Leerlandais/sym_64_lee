@@ -85,7 +85,7 @@ class AppFixtures extends Fixture
 
         $manager->persist($admin);
 
-        for($i = 3; $i < 8; $i++){
+        for($i = 1; $i < 6; $i++){
             // create the 5 Editors
             $redac = new User();
             $redac->setUsername('redac'.$i);
@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
             $pwdHash = $this->hasher->hashPassword($redac, 'redac'.$i);
             $redac->setPassword($pwdHash);
 
-            $this->admins[$i] = $redac;
+            $this->admins[($i + 2)] = $redac;
             $manager->persist($redac);
         }
 

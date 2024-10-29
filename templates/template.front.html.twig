@@ -54,8 +54,28 @@
                 <!-- Navbar Start -->
                 <div class="collapse navbar-collapse" id="navbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html"><i class="lnr lnr-enter"></i> Login</a></li>
-                        <li><a href="signup.html"><i class="lnr lnr-user"></i> Signup</a></li>
+                        {% if is_granted('IS_AUTHENTICATED') %}
+                            <li class="nav-item">
+                                <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('app_logout') }}">Logout</a>
+                            </li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('public_home') }}">Admin</a>
+                                </li>
+                            {% endif %}
+                            {% if is_granted('ROLE_REDAC') %}
+                                <li>
+                                    <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('public_home') }}">Article Editor</a>
+                                </li>
+                            {% endif %}
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="hover:text-gray-200 hover:underline text-center px-4" href="{{ path('app_login') }}"><i class="lnr lnr-enter"></i> Login</a>
+                            </li>
+                            <li>
+                                <a href="signup.html" class="hover:text-gray-200 hover:underline text-center px-4"><i class="lnr lnr-user"></i> Signup</a>
+                            </li>
+                        {% endif %}
                         <li class="postadd">
                             <a class="btn btn-danger btn-post" href="post-ads.html"><span class="fa fa-plus-circle"></span> Post an Ad</a>
                         </li>
@@ -107,6 +127,7 @@
     <!-- Start intro section -->
     <section id="intro" class="section-intro">
         <div class="overlay">
+            {% block introInner %}
             <div class="container">
                 <div class="main-text">
                     <h1 class="intro-title">Welcome To <span style="color: #3498DB">ClassiX</span></h1>
@@ -118,7 +139,7 @@
                                 <form class="search-form" method="get">
                                     <div class="col-md-3 col-sm-6 search-col">
                                         <div class="input-group-addon search-category-container">
-                                            <label class="styled-select">
+                                            <label class="styled-select location-select">
                                                 <select class="dropdown-product selectpicker" name="product-cat" >
 
                                                     {# REPLACE THESE WITH A LOOP #}
@@ -208,6 +229,7 @@
 
                 </div>
             </div>
+            {% endblock %}
         </div>
     </section>
     <!-- end intro section -->

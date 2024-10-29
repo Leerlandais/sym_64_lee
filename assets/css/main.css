@@ -2453,9 +2453,7 @@ textarea:focus {
 .page-login-form .checkbox {
   margin-bottom: 10px;
 }
-.page-login-form input[type="checkbox"] {
-  display: none;
-}
+
 .page-login-form .checkbox label {
   cursor: pointer;
   position: relative;
