@@ -47,7 +47,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- End Toggle Nav Link For Mobiles -->
-                    <a class="navbar-brand logo" href="index.html"><img src="{{ asset('img/logo.png') }}" alt=""></a>
+                    <a class="navbar-brand logo" href="{{ path("public_home") }}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
                 </div>
                 <!-- brand and toggle menu for mobile End -->
 
@@ -94,7 +94,7 @@
             <ul class="nav navmenu-nav"> <!--- Menu -->
 
                 {% for art in arts %}
-                <li><a href="index.html">{{ art.title | capitalize }}</a></li>
+                <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
                 {% endfor %}
 
                 <li><a href="{{ path('app_user_new') }}">Signup</a></li>
@@ -125,28 +125,28 @@
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" >
-
-                                                        {# REPLACE THESE WITH A LOOP #}
-                                                        <option value="0">All Authors</option>
+                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
+                                                        <!-- Default option to show all authors -->
+                                                        <option value="?product-cat=0">All Authors</option>
 
                                                         {% for author in authors %}
                                                             {% if "ROLE_REDAC" in author.roles %}
-                                                            <option class="subitem" value="{{ author.username }}"> {{ author.username | capitalize }}</option>
+                                                                <!-- Redirects to the author-specific URL when selected -->
+                                                                <option class="subitem" value="{{ path('public_author', {id: author.id}) }}">{{ author.username | capitalize }}</option>
                                                             {% endif %}
                                                         {% endfor %}
                                                     </select>
+
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" >
-
+                                                        <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <option value="0">All Categories</option>
                                                         {% for cat in cats %}
-                                                            <option value="{{ cat.sectionTitle }}">{{ cat.sectionTitle | capitalize }}</option>
+                                                            <option class="subitem" value="{{ path('public_section', {slug: cat.sectionSlug}) }}">{{ cat.sectionTitle | capitalize }}</option>
                                                         {% endfor %}
 
                                                     </select>
@@ -158,13 +158,11 @@
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" >
-
+                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <option value="0">All Tags</option>
-                                                    {% for tag in tags %}
-                                                        <option value="{{ tag.tagName }}">{{ tag.tagName | capitalize }}</option>
--                                                   {% endfor %}
-
+                                                        {% for tag in tags %}
+                                                            <option class="subitem" value="{{ path('public_tag', {slug: tag.tagSlug}) }}">{{ tag.tagName | capitalize }}</option>
+                                                        {% endfor %}
 
                                                     </select>
                                                 </label>
@@ -173,13 +171,13 @@
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" >
+                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
 
 
                                                         <option value="0">All Articles</option>
 
                                                         {% for art in arts %}
-                                                            <option value="{{ art.title }}">{{ art.title | capitalize }}</option>
+                                                            <option class="subitem" value="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</option>
                                                         {% endfor %}
                                                     </select>
                                                 </label>

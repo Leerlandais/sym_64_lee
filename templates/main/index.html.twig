@@ -8,14 +8,12 @@
                         <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
                             <h3 class="section-title">Featured Articles</h3>
                             <div id="new-products" class="owl-carousel">
+                                {% set randArt = arts|shuffle %}
+                                {% set sliceArt = randArt|slice(0, 12) %}
+                                {% for art in sliceArt %}
 
-                                {% set shuffleArts = arts|slice(0, 12) %}
-                                {% for art in shuffleArts %}
 
-
-                                    {# If the text is longer than 250 chars, cut it #}
                                     {% set truncateText = art.text|length > 250 ? art.text|slice(0, 250) : art.text %}
-                                    {# Then find the last ' ' in the cut the rest off #}
                                     {% set lastSpace = truncateText|split(' ')|length - 1 %}
                                     {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
 
@@ -26,11 +24,11 @@
                                         <div class="carousel-thumb">
                                             <p>{{ finalText }}</p>
                                             <div class="overlay">
-                                                <a href="#"><i class="fa fa-link"></i></a>
+                                                <a href="{{ path('public_article', {slug: art.titleSlug}) }}"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
-                                        <a href="#" class="item-name"><strong>{{ art.title }}</strong></a>
-                                        <span class="price">{{ art.user.username }}</span>
+                                        <a href="{{ path('public_article', {slug: art.titleSlug}) }}" class="item-name"><strong>{{ art.title }}</strong></a>
+                                        <span class="price"><a href="{{ path("public_author", {id: art.user.id}) }}">{{ art.user.username }}</a></span>
                                     </div>
                                 </div>
 
@@ -49,39 +47,42 @@
             <div class="features">
                 <div class="container">
                     <div class="row">
-                        <h3 class="section-title">Latest Articles</h3>
+                        <h3 class="section-title">Popular Articles</h3>
 
                         {# PETIT EXPERIENCE POUR VOIR SI JE PEUX JOUER AVEC LES ARRAYS :-D #}
                         {% set delay = 0.0 %}
                         {% set incr = 0.3 %}
-                        {% set data = arts|slice(-9) %}
-                        {% set fafa = ["book", "leaf", "newspaper-o", "hashtag", "hourglass", "cogs", "map", "paper-plane", "git"] %}
-                        {% set i = 0 %}
-                        {% for art in data %}
 
-                        <div class="col-md-4 col-sm-6">
-                                {% set delay = delay + incr %}{# CHAQUE ARTICLE S'AFFICHE 0.3s APRÈS L'AUTRE #}
-                            <div class="features-box wow fadeInDownQuick" data-wow-delay="{{ delay }}s">
-                                <div class="features-icon">
-                                    <i class="fa fa-{{ fafa[i % fafa|length] }}">
-                                        {% set i = i + 1 %}
-                                    </i>
-                                </div>
-                                <div class="features-content">
-                                    <h4>{{ art.title }}</h4>
-                                    {% set truncateText = art.text|length > 150 ? art.text|slice(0, 150) : art.text %}
-                                    {% set lastSpace = truncateText|split(' ')|length - 1 %}
-                                    {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
+                        {% set fafa = ["book", "leaf", "newspaper-o", "hashtag", "hourglass", "cogs", "map", "paper-plane", "git"] | shuffle %}
+                        {% set randArt = arts|shuffle %}
+                        {% set sliceArt = randArt|slice(0, 9) %}
 
-                                    {% set finalText = truncatedWords ~ '...' %}
-                                    <p>
-                                        {{ finalText }}
-                                    </p>
-                                    <p class="pull-right">{{ art.articleDatePosted|date("F j, Y") }}</p> {# add this if I want the time : , g:i a #}
+                        {% for i, art in sliceArt %}
+
+                            <div class="col-md-4 col-sm-6">
+                                {% set delay = delay + incr %}{# Each article appears 0.3s after the last one #}
+                                <div class="features-box wow fadeInDownQuick" data-wow-delay="{{ delay }}s">
+                                    <div class="features-icon">
+                                        <i class="fa fa-{{ fafa[i % fafa|length] }}"></i>  {# randomised the icons #}
+                                    </div>
+                                    <div class="features-content">
+                                        <h4>{{ art.title }}</h4>
+
+                                        {% set truncateText = art.text|length > 150 ? art.text|slice(0, 150) : art.text %}
+                                        {% set lastSpace = truncateText|split(' ')|length - 1 %}
+                                        {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
+                                        {% set finalText = truncatedWords ~ '...' %}
+
+                                        <a href="{{ path('public_article', {slug: art.titleSlug}) }}"><p>{{ finalText }}</p></a>
+                                        <span class="pull-right">{{ art.articleDatePosted|date("F j, Y") }}</span>
+                                        <a href="{{ path('public_author', {id: art.user.id}) }}" class="pull-left">{{ art.user.username }}</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+
+                        {% endfor %}
+
+
 
 
                     </div>
@@ -159,3 +160,5 @@
         </section>
         <!-- Counter Section End -->
     {% endblock %}{# end counter #}
+
+
