@@ -1,16 +1,5 @@
 {% extends 'template.front.html.twig' %}
 
-
-{% block body %}
-    {% block header %}
-        {{ parent() }}
-    {% endblock %}
-
-    {% block intro %}
-        {{ parent() }}
-    {% endblock %}
-
-
         {% block featured %}
             <!-- Featured Listings Start -->
             <section class="featured-lis" >
@@ -334,8 +323,3 @@
         </section>
         <!-- Counter Section End -->
     {% endblock %}{# end counter #}
-
-
-    {% block footer %} {{ parent() }} {% endblock %}
-    {% block scripts %}{{ parent() }}{% endblock %}
-{% endblock %}{# end body #}
