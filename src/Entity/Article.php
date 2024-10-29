@@ -47,9 +47,16 @@ class Article
     #[ORM\ManyToMany(targetEntity: Section::class, inversedBy: 'articles')]
     private Collection $sections;
 
+    /**
+     * @var Collection<int, Tag>
+     */
+    #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'articles')]
+    private Collection $tags;
+
     public function __construct()
     {
         $this->sections = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,6 +180,33 @@ class Article
     public function removeSection(Section $section): static
     {
         $this->sections->removeElement($section);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+            $tag->addArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        if ($this->tags->removeElement($tag)) {
+            $tag->removeArticle($this);
+        }
 
         return $this;
     }

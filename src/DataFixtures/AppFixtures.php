@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -159,6 +160,28 @@ class AppFixtures extends Fixture
             }
 
             $manager->persist($section);
+        }
+
+
+        // and some tags
+        for ($i = 1; $i < 20; $i++){
+            $tag = new Tag();
+            $title = $this->createTitle(1,1);
+            $tag->setTagName($title);
+            $tag->setTagSlug($slugify->slugify($title));
+
+            // and link them to the articles randomly
+            $nbArt = mt_rand(20, 40);
+            shuffle($articles);
+            // There are many methods to do this but I like this cos it makes sure the random articles are unique
+            // (meaning the if(!$this) in addArticle may be redundant)
+            $randArts = array_slice($articles, 0, $nbArt);
+
+            foreach ($randArts as $art) {
+                $tag->addArticle($art);
+            }
+
+            $manager->persist($tag);
         }
 
         $manager->flush();
