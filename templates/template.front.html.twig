@@ -73,7 +73,7 @@
                                 <a class="hover:text-gray-200 hover:underline text-center px-4" href="{{ path('app_login') }}"><i class="lnr lnr-enter"></i> Login</a>
                             </li>
                             <li>
-                                <a href="signup.html" class="hover:text-gray-200 hover:underline text-center px-4"><i class="lnr lnr-user"></i> Signup</a>
+                                <a href="{{ path('app_user_new') }}" class="hover:text-gray-200 hover:underline text-center px-4"><i class="lnr lnr-user"></i> Signup</a>
                             </li>
                         {% endif %}
                         <li class="postadd">
@@ -112,7 +112,7 @@
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="forgot-password.html">Forgot-password</a></li>
                 <li><a href="faq.html">Faq</a></li>
-                <li><a href="signup.html">Signup</a></li>
+                <li><a href="{{ path('app_user_new') }}">Signup</a></li>
             </ul><!--- End Menu -->
         </div> <!--- End Off Canvas Side Menu -->
         <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms" data-toggle="offcanvas" data-target=".navmenu">
