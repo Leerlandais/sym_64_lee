@@ -125,6 +125,7 @@
 
 {% block intro %}
     <!-- Start intro section -->
+    {{ dump(authors) }}
     <section id="intro" class="section-intro">
         <div class="overlay">
             {% block introInner %}
@@ -143,18 +144,11 @@
                                                 <select class="dropdown-product selectpicker" name="product-cat" >
 
                                                     {# REPLACE THESE WITH A LOOP #}
-
                                                     <option value="0">All Authors</option>
-                                                    <option class="subitem" value="community"> Community</option>
-                                                    <option value="items-for-sale"> Items For Sale</option>
-                                                    <option value="jobs"> Jobs</option>
-                                                    <option value="personals"> Personals</option>
-                                                    <option value="training"> Training</option>
-                                                    <option value="real_estate"> Real Estate</option>
-                                                    <option value="services"> Services</option>
-                                                    <option value="vehicles"> Vehicles</option>
 
-
+                                                {% for author in authors %}
+                                                    <option class="subitem" value="{{ author.username }}"> {{ author.username | capitalize }}</option>
+                                                    {% endfor %}
                                                 </select>
                                             </label>
                                         </div>
@@ -165,15 +159,10 @@
                                                 <select class="dropdown-product selectpicker" name="product-cat" >
 
                                                     {# REPLACE THESE TOO #}
-
                                                     <option value="0">All Categories</option>
-                                                    <option value="New York">New York</option>
-                                                    <option value="California">California</option>
-                                                    <option value="Washington">Washington</option>
-                                                    <option value="churches">Birmingham</option>
-                                                    <option value="Birmingham">Chicago</option>
-                                                    <option value="Phoenix">Phoenix</option>
-
+                                                {% for cat in cats %}
+                                                    <option value="{{ cat.sectionTitle }}">{{ cat.sectionTitle | capitalize }}</option>
+                                                {% endfor %}
 
                                                 </select>
                                             </label>
@@ -209,14 +198,11 @@
                                                         {# REPLACE THESE TOO #}
 
                                                         <option value="0">All Articles</option>
-                                                        <option value="New York">New York</option>
-                                                        <option value="California">California</option>
-                                                        <option value="Washington">Washington</option>
-                                                        <option value="churches">Birmingham</option>
-                                                        <option value="Birmingham">Chicago</option>
-                                                        <option value="Phoenix">Phoenix</option>
-
-
+                                                        {#
+                                                    {% for art in arts %}
+                                                        <option value="{{ art.title }}">{{ art.title | capitalize }}</option>
+                                                    {% endfor %}
+                                                        #}
                                                     </select>
                                                 </label>
                                             </div>
