@@ -131,7 +131,9 @@
                                                         <option value="0">All Authors</option>
 
                                                         {% for author in authors %}
+                                                            {% if "ROLE_REDAC" in author.roles %}
                                                             <option class="subitem" value="{{ author.username }}"> {{ author.username | capitalize }}</option>
+                                                            {% endif %}
                                                         {% endfor %}
                                                     </select>
                                                 </label>
@@ -142,7 +144,6 @@
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" >
 
-                                                        {# REPLACE THESE TOO #}
                                                         <option value="0">All Categories</option>
                                                         {% for cat in cats %}
                                                             <option value="{{ cat.sectionTitle }}">{{ cat.sectionTitle | capitalize }}</option>
@@ -159,7 +160,6 @@
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" >
 
-                                                        {# REPLACE THESE TOO #}
                                                         <option value="0">All Tags</option>
                                                     {% for tag in tags %}
                                                         <option value="{{ tag.tagName }}">{{ tag.tagName | capitalize }}</option>
@@ -175,7 +175,6 @@
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" >
 
-                                                        {# REPLACE THESE TOO #}
 
                                                         <option value="0">All Articles</option>
 
@@ -247,7 +246,7 @@
                                     </li>
                                     <li class="clearfix">
                       <span>
-                        Introducing Bootstrap 4 Features: What’s new, What’s gone!
+                        Introducing Bootstrap 5 Features: What’s new, What’s gone!
                         <a href="#">http://t.co/cLo2w7rWOx</a>
                       </span>
                                     </li>
@@ -257,45 +256,11 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="1.5s">
                         <div class="widget">
-                            <h3 class="block-title">Random Ads</h3>
-                            <ul class="featured-list">
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img1.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img2.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img3.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img4.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img5.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img alt="" src="{{ asset('img/featured/img6.jpg') }}">
-                                    <div class="hover">
-                                        <a href="#"><span>$49</span></a>
-                                    </div>
-                                </li>
-                            </ul>
+                            <h3 class="block-title">EXPLICATION !!!</h3>
+                            <div class="textwidget">
+                                <p>{{ "Ce pied de page est uniquement à des fins de démonstration et ne contient pas de
+                                    liens actifs ni d'informations réelles :-D" | upper }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
