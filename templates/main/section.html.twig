@@ -12,6 +12,7 @@
                 <div class="col-md-12">
                     <div class="breadcrumb-wrapper">
                         <h2 class="page-title">{{ section.sectionTitle }}</h2>
+                        <h4>{{ section.sectionDetail }}</h4>
                     </div>
                 </div>
             </div>
@@ -24,7 +25,6 @@
 
         <div class="container">
             <div class="row">
-
             {% for art in arts %}
                 <div class="col-md-4 col-sm-6">
                     <div class="features-box wow fadeInDownQuick" data-wow-delay="0.3s">
@@ -33,10 +33,11 @@
                             </i>
                         </div>
                         <div class="features-content">
+                            <a href="{{ path('public_article', {slug: art.titleSlug }) }}">
                             <h4>
                                 {{ art.title | capitalize }}
                             </h4>
-                            {% set truncateText = art.text|length > 100 ? art.text|slice(0, 100) : art.text %}
+                            {% set truncateText = art.text|length > 200 ? art.text|slice(0, 200) : art.text %}
                             {% set lastSpace = truncateText|split(' ')|length - 1 %}
                             {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
 
@@ -44,7 +45,9 @@
                             <p>
                                 {{ finalText }}
                             </p>
+                            </a>
                             <span class="pull-right">{{ art.articleDatePosted|date("F j, Y") }}</span> {# add this if I want the time : , g:i a #}
+                            <a href="{{ path("public_author", {id: art.user.id }) }}"><span class="pull-left">{{ art.user.username }}</span></a>
 
                         </div>
                     </div>

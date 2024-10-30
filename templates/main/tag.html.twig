@@ -33,19 +33,22 @@
                             </i>
                         </div>
                         <div class="features-content">
-                            <h4>
-                                {{ art.title | capitalize }}
-                            </h4>
-                            {% set truncateText = art.text|length > 100 ? art.text|slice(0, 100) : art.text %}
-                            {% set lastSpace = truncateText|split(' ')|length - 1 %}
-                            {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
+                            <a href="{{ path("public_article", {slug: art.titleSlug}) }}">
+                                <h4>
+                                    {{ art.title | capitalize }}
+                                </h4>
+                                    {# LES TAGS SONT BIEN PLUS NOMBREUX QUE LES SECTIONS DONC J'AI REDUIS LE TEXTE POUR EVITER D'AVOIR UN ECRAN TRÈS LONG #}
+                                    {% set truncateText = art.text|length > 100 ? art.text|slice(0, 100) : art.text %}
+                                    {% set lastSpace = truncateText|split(' ')|length - 1 %}
+                                    {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
 
-                            {% set finalText = truncatedWords ~ '...' %}
-                            <p>
-                                {{ finalText }}
-                            </p>
+                                    {% set finalText = truncatedWords ~ '...' %}
+                                <p>
+                                    {{ finalText }}
+                                </p>
+                            </a>
                             <span class="pull-right">{{ art.articleDatePosted|date("F j, Y") }}</span> {# add this if I want the time : , g:i a #}
-
+                            <a href="{{ path("public_author", {id: art.user.id }) }}"><span class="pull-left">{{ art.user.username }}</span></a>
                         </div>
                     </div>
                 </div>

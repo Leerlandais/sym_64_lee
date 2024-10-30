@@ -26,6 +26,7 @@ class MainController extends AbstractController
             'authors' => $authors,
             'cats' => $categs,
             'arts' => $arts,
+            'menuArts'=> $arts,
             'tags' => $tags,
         ]);
     }
@@ -35,9 +36,11 @@ class MainController extends AbstractController
     {
         $arts = $entityManager->getRepository(Article::class)->getArticlesByAuthorId($id);
         $author = $entityManager->getRepository(User::class)->find($id);
+        $menuArts = $entityManager->getRepository(Article::class)->findAll();
         return $this->render('main/author.html.twig', [
             'author' => $author,
             'arts' => $arts,
+            "menuArts" => $menuArts,
         ]);
     }
 
@@ -45,6 +48,7 @@ class MainController extends AbstractController
     public function section(EntityManagerInterface $entityManager, string $slug): Response
     {
         $arts = $entityManager->getRepository(Article::class)->getArticlesBySectionSlug($slug);
+        $menuArts = $entityManager->getRepository(Article::class)->findAll();
         foreach ($arts as $art) {
             foreach ($art->getSections() as $sect) {
                 $sect->getSectionTitle();
@@ -54,6 +58,7 @@ class MainController extends AbstractController
         return $this->render('main/section.html.twig', [
             'section' => $sect,
             'arts' => $arts,
+            "menuArts" => $menuArts,
         ]);
     }
 
@@ -61,7 +66,7 @@ class MainController extends AbstractController
     public function tag(EntityManagerInterface $entityManager, string $slug): Response
     {
         $arts = $entityManager->getRepository(Article::class)->getArticlesByTagSlug($slug);
-
+        $menuArts = $entityManager->getRepository(Article::class)->findAll();
         foreach ($arts as $art) {
             foreach ($art->getTags() as $tag) {
                 $tag->getTagName();
@@ -71,6 +76,7 @@ class MainController extends AbstractController
         return $this->render('main/tag.html.twig', [
             'arts' => $arts,
             'tag' => $tag,
+            "menuArts" => $menuArts,
         ]);
     }
 
@@ -83,6 +89,7 @@ class MainController extends AbstractController
         return $this->render('main/article.html.twig', [
             'article' => $article,
             'arts' => $arts,
+            'menuArts' => $arts,
         ]);
     }
 

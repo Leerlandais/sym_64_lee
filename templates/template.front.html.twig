@@ -77,7 +77,7 @@
                             </li>
                         {% endif %}
                         <li class="postadd">
-                            <a class="btn btn-danger btn-post" href="post-ads.html"><span class="fa fa-plus-circle"></span> Post an Ad</a>
+                            <a class="btn btn-danger btn-post" href="#ads"><span class="fa fa-plus-circle"></span> Post an Ad</a>
                         </li>
                     </ul>
                 </div>
@@ -93,7 +93,7 @@
             <h3 class="title-menu">All Pages</h3>
             <ul class="nav navmenu-nav"> <!--- Menu -->
 
-                {% for art in arts %}
+                {% for art in menuArts %}
                 <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
                 {% endfor %}
 
@@ -127,7 +127,7 @@
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <!-- Default option to show all authors -->
-                                                        <option value="?product-cat=0">All Authors</option>
+                                                        <option value="#">All Authors</option>
 
                                                         {% for author in authors %}
                                                             {% if "ROLE_REDAC" in author.roles %}
@@ -144,7 +144,7 @@
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
                                                         <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                        <option value="0">All Categories</option>
+                                                        <option value="#">All Categories</option>
                                                         {% for cat in cats %}
                                                             <option class="subitem" value="{{ path('public_section', {slug: cat.sectionSlug}) }}">{{ cat.sectionTitle | capitalize }}</option>
                                                         {% endfor %}
@@ -159,7 +159,7 @@
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                        <option value="0">All Tags</option>
+                                                        <option value="#">All Tags</option>
                                                         {% for tag in tags %}
                                                             <option class="subitem" value="{{ path('public_tag', {slug: tag.tagSlug}) }}">{{ tag.tagName | capitalize }}</option>
                                                         {% endfor %}
@@ -174,7 +174,7 @@
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
 
 
-                                                        <option value="0">All Articles</option>
+                                                        <option value="#">All Articles</option>
 
                                                         {% for art in arts %}
                                                             <option class="subitem" value="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</option>
