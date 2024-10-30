@@ -51,37 +51,7 @@
                 </div>
                 <!-- brand and toggle menu for mobile End -->
 
-                <!-- Navbar Start -->
-                <div class="collapse navbar-collapse" id="navbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if is_granted('IS_AUTHENTICATED') %}
-                            <li class="nav-item">
-                                <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('app_logout') }}">Logout</a>
-                            </li>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <li>
-                                    <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('public_home') }}">Admin</a>
-                                </li>
-                            {% endif %}
-                            {% if is_granted('ROLE_REDAC') %}
-                                <li>
-                                    <a class="nav-link hover:text-gray-200 hover:underline text-center px-4" href="{{ path('public_home') }}">Article Editor</a>
-                                </li>
-                            {% endif %}
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="hover:text-gray-200 hover:underline text-center px-4" href="{{ path('app_login') }}"><i class="lnr lnr-enter"></i> Login</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('app_user_new') }}" class="hover:text-gray-200 hover:underline text-center px-4"><i class="lnr lnr-user"></i> Signup</a>
-                            </li>
-                        {% endif %}
-                        <li class="postadd">
-                            <a class="btn btn-danger btn-post" href="#ads"><span class="fa fa-plus-circle"></span> Post an Ad</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Navbar End -->
+{% include '_menu.html.twig' %}
             </div>
         </nav>
         <!-- Off Canvas Navigation -->
@@ -94,7 +64,7 @@
             <ul class="nav navmenu-nav"> <!--- Menu -->
 
                 {% for art in menuArts %}
-                <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
+                    <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
                 {% endfor %}
 
                 <li><a href="{{ path('app_user_new') }}">Signup</a></li>
@@ -143,7 +113,7 @@
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                        <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
+                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <option value="#">All Categories</option>
                                                         {% for cat in cats %}
                                                             <option class="subitem" value="{{ path('public_section', {slug: cat.sectionSlug}) }}">{{ cat.sectionTitle | capitalize }}</option>
@@ -256,8 +226,8 @@
                         <div class="widget">
                             <h3 class="block-title">EXPLICATION !!!</h3>
                             <div class="textwidget">
-                                <p>{{ "Ce pied de page est uniquement à des fins de démonstration et ne contient pas de
-                                    liens actifs ni d'informations réelles :-D" | upper }}</p>
+                                <p id="ads">{{ "Ce pied de page est uniquement à des fins de démonstration et ne contient pas de
+                                    liens actifs ni d'informations réelles mais, au moins, il n'y a pas des pubs :-D" | upper }}</p>
                             </div>
                         </div>
                     </div>
