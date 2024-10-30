@@ -16,28 +16,76 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    //    /**
-    //     * @return Article[] Returns an array of Article objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function getArticlesByAuthorId(int $authorId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.user', 'u')
+            ->addSelect('u')
+            ->where('p.published = :published')
+            ->setParameter('published', true)
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $authorId)
 
-    //    public function findOneBySomeField($value): ?Article
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getAllArticlesByAuthorId(int $authorId): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.user', 'u')
+            ->addSelect('u')
+            ->andWhere('u.id = :id')
+            ->setParameter('id', $authorId)
+
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getArticlesBySectionSlug(string $slug): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.sections', 's')
+            ->addSelect('s')
+            ->where('p.published = :published')
+            ->setParameter('published', true)
+            ->andWhere('s.section_slug = :slug')
+            ->setParameter('slug', $slug)
+
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getArticlesByTagSlug(string $tagSlug): array
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.tags', 't')
+            ->addSelect('t')
+            ->where('p.published = :published')
+            ->setParameter('published', true)
+            ->andWhere('t.tag_slug = :slug')
+            ->setParameter('slug', $tagSlug)
+
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getArticlesByTitleSlug(string $artSlug): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.published = :published')
+            ->setParameter('published', true)
+            ->andWhere('p.title_slug = :slug')
+            ->setParameter('slug', $artSlug)
+
+
+            ->getQuery()
+            ->getResult();
+    }
+
+
 }

@@ -1,0 +1,54 @@
+{% extends 'main/index.html.twig' %}
+
+{% block title %}Article Index{% endblock %}
+{% block intro %}{% endblock %}
+{% block featured %}{% endblock %}
+{% block services %}
+    {% block sideNav %}{% endblock %}
+
+    <div class="features">
+        <div class="container">
+            <div class="row">
+                <h3 class="section-title">Edit/Delete Articles</h3>
+                {% for article in articles %}
+                {# PETIT EXPERIENCE POUR VOIR SI JE PEUX JOUER AVEC LES ARRAYS :-D #}
+
+                {% set delay = 0.0 %}
+                {% set incr = 0.3 %}
+
+                    <div class="col-md-4 col-sm-6">
+                        {% set delay = delay + incr %}{# Each article appears 0.3s after the last one #}
+                        <div class="features-box wow fadeInDownQuick" data-wow-delay="{{ delay }}s">
+
+                            <div class="features-content">
+                                <h4>{{ article.title }}</h4>
+
+                                {% set truncateText = article.text|length > 150 ? article.text|slice(0, 150) : article.text %}
+                                {% set lastSpace = truncateText|split(' ')|length - 1 %}
+                                {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
+                                {% set finalText = truncatedWords ~ '...' %}
+
+                                <a href="{{ path('public_article', {slug: article.titleSlug}) }}"><p>{{ finalText }}</p></a>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                <form method="post" class="pull-right" action="{{ path('app_article_delete', {'id': article.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                                    <button class="text-danger">Delete</button>
+                                </form>
+                                {% endif %}
+                                <a href="{{ path('app_article_edit', {'id': article.id}) }}" class="pull-left"><button>Edit</button></a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block counter %}{% endblock %}

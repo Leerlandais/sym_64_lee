@@ -47,6 +47,11 @@ class AppFixtures extends Fixture
         return $this->faker->dateTimeBetween($maxDate,(clone $maxDate)->modify('+3 months'));
     }
 
+    private function createName() : string
+    {
+        return $this->faker->name();
+    }
+
     public function load(ObjectManager $manager): void
     {
         $slugify = new Slugify();
@@ -76,7 +81,8 @@ class AppFixtures extends Fixture
         $admin->setUsername('admin');
         $admin->setRoles(['ROLE_ADMIN', 'ROLE_REDAC', 'ROLE_USER']);
         $admin->setEmail('admin@admin.com');
-        $admin->setFullName("Admin");
+        $name = $this->createName();
+        $admin->setFullName($name);
         $admin->setActivate(true);
         $admin->setUniqid(uniqid('user_', true));
         $pwdHash = $this->hasher->hashPassword($admin, 'admin');
@@ -92,7 +98,8 @@ class AppFixtures extends Fixture
             $redac->setUsername('redac'.$i);
             $redac->setRoles(['ROLE_REDAC', 'ROLE_USER']);
             $redac->setEmail('redac'.$i.'@redac.com');
-            $redac->setFullName('Redac '.$i);
+            $name = $this->createName();    // PUISQUE LE CONNEXION EST FAIT AVEC USERNAME, JE TROUVE PLUS SYMPA DE DONNER DES NOMS AUX GENS POUR L'AFFICHAGE
+            $redac->setFullName($name);
             $redac->setActivate(true);
             $redac->setUniqid(uniqid('user_', true));
             $pwdHash = $this->hasher->hashPassword($redac, 'redac'.$i);
@@ -109,7 +116,7 @@ class AppFixtures extends Fixture
             $user->setUsername('user'.$i);
             $user->setRoles(['ROLE_USER']);
             $user->setEmail($this->faker->email);
-            $user->setFullName($this->faker->name());
+            $user->setFullName($this->createName());
             $user->setActivate(mt_rand(0,3)); // tidier way to get 1 false in 4, no need for an extra variable
             $user->setUniqid(uniqid('user_', true));
             $pwdHash = $this->hasher->hashPassword($user, 'user'.$i);
