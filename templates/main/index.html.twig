@@ -7,7 +7,19 @@
                     <div class="row">
                         <div class="col-md-12 wow fadeIn" data-wow-delay="0.5s">
                             <h3 class="section-title">Featured Articles</h3>
+                            <h3 class="section-title">Featured Articles</h3>
                             <div id="new-products" class="owl-carousel">
+                                {% set randArt = arts|shuffle %}
+                                {% set sliceArt = randArt|slice(0, 12) %}
+                                {% for art in sliceArt %}
+
+
+                                    {% set truncateText = art.text|length > 250 ? art.text|slice(0, 250) : art.text %}
+                                    {% set lastSpace = truncateText|split(' ')|length - 1 %}
+                                    {% set truncatedWords = truncateText|split(' ')|slice(0, lastSpace)|join(' ') %}
+
+                                    {% set finalText = truncatedWords ~ '...' %}
+
                                 {% set randArt = arts|shuffle %}
                                 {% set sliceArt = randArt|slice(0, 12) %}
                                 {% for art in sliceArt %}
@@ -23,7 +35,9 @@
                                     <div class="product-item">
                                         <div class="carousel-thumb">
                                             <p>{{ finalText }}</p>
+                                            <p>{{ finalText }}</p>
                                             <div class="overlay">
+                                                <a href="{{ path('public_article', {slug: art.titleSlug}) }}"><i class="fa fa-link"></i></a>
                                                 <a href="{{ path('public_article', {slug: art.titleSlug}) }}"><i class="fa fa-link"></i></a>
                                             </div>
                                         </div>
@@ -31,6 +45,8 @@
                                         <span class="price"><a href="{{ path("public_author", {id: art.user.id}) }}">{{ art.user.fullname }}</a></span>
                                     </div>
                                 </div>
+
+                                {% endfor %}
 
                                 {% endfor %}
                             </div>
@@ -82,6 +98,9 @@
 
                         {% endfor %}
 
+
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
@@ -104,6 +123,8 @@
                             <div class="desc">
                                 <h3 class="counter">{{ arts|length }}</h3>
                                 <p>Articles</p>
+                                <h3 class="counter">{{ arts|length }}</h3>
+                                <p>Articles</p>
                             </div>
                         </div>
                     </div>
@@ -115,6 +136,14 @@
                     </span>
                             </div>
                             <div class="desc">
+                                {% set x = 0 %}
+                                    {% for author in authors %}
+                                        {% if "ROLE_REDAC" in author.roles %}
+                                            {% set x = x + 1 %}
+                                        {% endif %}
+                                    {% endfor %}
+                                <h3 class="counter">{{ x }}</h3>
+                                <p>Authors</p>
                                 {% set x = 0 %}
                                     {% for author in authors %}
                                         {% if "ROLE_REDAC" in author.roles %}
@@ -149,6 +178,8 @@
                             <div class="desc">
                                 <h3 class="counter">0</h3>
                                 <p>Ads</p>
+                                <h3 class="counter">0</h3>
+                                <p>Ads</p>
                             </div>
                         </div>
                     </div>
@@ -157,5 +188,7 @@
         </section>
         <!-- Counter Section End -->
     {% endblock %}{# end counter #}
+
+
 
 
