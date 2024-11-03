@@ -41,7 +41,11 @@
                                     {{ art.text }}
                                 </p>
                                 <span class="pull-right">{{ art.articleDatePosted|date("F j, Y") }}</span> {# add this if I want the time : , g:i a #}
-
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <button class="pull-left"><a href="{{ path('app_article_edit', {'id': art.id}) }}">Edit</a></button>
+                                    {% else %}
+                                        <button class="pull-left"><a href="{{ path('app_article_edit', {'id': art.id}) }}">Edit</a></button>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

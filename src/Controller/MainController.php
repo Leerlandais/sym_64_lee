@@ -34,7 +34,6 @@ class MainController extends AbstractController
             'cats' => $categs,
             'arts' => $arts,
             'menuArts'=> $arts,
-            'menuArts'=> $arts,
             'tags' => $tags,
             'user' => $userId,
         ]);

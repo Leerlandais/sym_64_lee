@@ -48,11 +48,9 @@
                     </button>
                     <!-- End Toggle Nav Link For Mobiles -->
                     <a class="navbar-brand logo" href="{{ path("public_home") }}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
-                    <a class="navbar-brand logo" href="{{ path("public_home") }}"><img src="{{ asset('img/logo.png') }}" alt=""></a>
                 </div>
                 <!-- brand and toggle menu for mobile End -->
 
-{% include '_menu.html.twig' %}
 {% include '_menu.html.twig' %}
             </div>
         </nav>
@@ -66,8 +64,6 @@
             <h3 class="title-menu">All Articles</h3>
             <ul class="nav navmenu-nav"> <!--- Menu -->
 
-                {% for art in menuArts %}
-                    <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
                 {% for art in menuArts %}
                     <li><a href="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</a></li>
                 {% endfor %}
@@ -104,9 +100,6 @@
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <!-- Default option to show all authors -->
                                                         <option value="#">All Authors</option>
-                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                        <!-- Default option to show all authors -->
-                                                        <option value="#">All Authors</option>
 
                                                         {% for author in authors %}
                                                             {% if "ROLE_REDAC" in author.roles %}
@@ -116,20 +109,16 @@
                                                         {% endfor %}
                                                     </select>
 
-
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-3 col-sm-6 search-col">
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                        <option value="#">All Categories</option>
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
                                                         <option value="#">All Categories</option>
                                                         {% for cat in cats %}
                                                             <option class="subitem" value="{{ path('public_section', {slug: cat.sectionSlug}) }}">{{ cat.sectionTitle | capitalize }}</option>
-                                                            <option class="subitem" value="{{ path('public_section', {slug: cat.sectionSlug}) }}">{{ cat.sectionTitle | capitalize }}</option>
                                                         {% endfor %}
 
                                                     </select>
@@ -146,11 +135,6 @@
                                                         {% for tag in tags %}
                                                             <option class="subitem" value="{{ path('public_tag', {slug: tag.tagSlug}) }}">{{ tag.tagName | capitalize }}</option>
                                                         {% endfor %}
-                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                        <option value="#">All Tags</option>
-                                                        {% for tag in tags %}
-                                                            <option class="subitem" value="{{ path('public_tag', {slug: tag.tagSlug}) }}">{{ tag.tagName | capitalize }}</option>
-                                                        {% endfor %}
 
                                                     </select>
                                                 </label>
@@ -160,14 +144,11 @@
                                             <div class="input-group-addon search-category-container">
                                                 <label class="styled-select location-select">
                                                     <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
-                                                    <select class="dropdown-product selectpicker" name="product-cat" onchange="location = this.value;">
 
 
-                                                        <option value="#">All Articles</option>
                                                         <option value="#">All Articles</option>
 
                                                         {% for art in arts %}
-                                                            <option class="subitem" value="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</option>
                                                             <option class="subitem" value="{{ path('public_article', {slug: art.titleSlug}) }}">{{ art.title | capitalize }}</option>
                                                         {% endfor %}
                                                     </select>
@@ -236,7 +217,6 @@
                                     <li class="clearfix">
                       <span>
                         Introducing Bootstrap 5 Features: What’s new, What’s gone!
-                        Introducing Bootstrap 5 Features: What’s new, What’s gone!
                         <a href="#">http://t.co/cLo2w7rWOx</a>
                       </span>
                                     </li>
@@ -246,11 +226,6 @@
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="1.5s">
                         <div class="widget">
-                            <h3 class="block-title">EXPLICATION !!!</h3>
-                            <div class="textwidget">
-                                <p id="ads">{{ "Ce pied de page est uniquement à des fins de démonstration et ne contient pas de
-                                    liens actifs ni d'informations réelles mais, au moins, il n'y a pas des pubs :-D" | upper }}</p>
-                            </div>
                             <h3 class="block-title">EXPLICATION !!!</h3>
                             <div class="textwidget">
                                 <p id="ads">{{ "Ce pied de page est uniquement à des fins de démonstration et ne contient pas de

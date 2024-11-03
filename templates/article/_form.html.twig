@@ -1,4 +1,53 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<section class="featured-lis" >
+    <div class="container center bg-info">
+
+<form>
+    <div class="mb-3">
+        <label for="articleTitle" class="form-label">Title</label>
+        {{ form_widget(form.title,
+            {'attr': {'class': "form-control",
+                'id': 'articleTitle',
+                'placeholder': 'Title'}}) }}
+    </div>
+    <div class="mb-3">
+        <label for="articleText" class="form-label">Text</label>
+        {{ form_widget(form.text,
+            {'attr': {'class': "form-control",
+                'id': 'articleText',
+                'placeholder': 'Text',
+                'type' : 'textarea',
+                'rows' : 20}}) }}
+    </div>
+    <div class="mb-3 form-check pull-right">
+        <label class="form-check-label" for="articlePublished">Published ?</label>
+        {{ form_widget(form.published,
+            {'attr': {'class': "form-control",
+                'id': 'articlePublished',
+                'type': 'checkbox '}}) }}
+    </div>
+    <div>
+        <label for="sections">Sections</label>
+
+        {{ form_widget(form.sections, {
+            'attr': {
+                'id': 'sections',
+                'class': 'input-group-button'
+            }
+        }) }}
+    </div>
+    <div>
+        <label for="tags">Tags</label>
+
+        {{ form_widget(form.tags, {
+            'attr': {
+                'id': 'tags',
+                'class': 'input-group-button'
+            }
+        }) }}
+    </div>
+    <button class="btn btn-success fea pull-left">{{ button_label|default('Save') }}</button>
+    </form>
+    </div>
+</section>
 {{ form_end(form) }}
